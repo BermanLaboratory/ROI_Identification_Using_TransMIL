@@ -1,0 +1,86 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.21
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    python_version: 3.8.10
+    start_time: 1660827976
+    t:
+      1:
+      - 1
+      - 9
+      - 41
+      - 55
+      3:
+      - 7
+      - 13
+      - 23
+      4: 3.8.10
+      5: 0.12.21
+      8:
+      - 5
+data/data_dir:
+  desc: null
+  value: Camelyon16/pt_files/
+data/data_shuffle:
+  desc: null
+  value: false
+data/dataset_name:
+  desc: null
+  value: camel_data
+data/fold:
+  desc: null
+  value: 0
+data/label_dir:
+  desc: null
+  value: dataset_csv/camelyon16/
+data/nfold:
+  desc: null
+  value: 4
+data/test_dataloader/batch_size:
+  desc: null
+  value: 1
+data/test_dataloader/num_workers:
+  desc: null
+  value: 8
+data/train_dataloader/batch_size:
+  desc: null
+  value: 1
+data/train_dataloader/num_workers:
+  desc: null
+  value: 8
+loss/base_loss:
+  desc: null
+  value: CrossEntropyLoss
+model/n_classes:
+  desc: null
+  value: 2
+model/name:
+  desc: null
+  value: TransMIL
+optimizer/lr:
+  desc: null
+  value: 0.0002
+optimizer/momentum:
+  desc: null
+  value: None
+optimizer/opt:
+  desc: null
+  value: lookahead_radam
+optimizer/opt_betas:
+  desc: null
+  value: None
+optimizer/opt_eps:
+  desc: null
+  value: None
+optimizer/weight_decay:
+  desc: null
+  value: 1.0e-05

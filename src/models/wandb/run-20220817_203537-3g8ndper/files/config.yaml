@@ -1,0 +1,186 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.21
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    python_version: 3.8.10
+    start_time: 1660768537
+    t:
+      1:
+      - 1
+      - 9
+      - 41
+      - 55
+      3:
+      - 7
+      - 13
+      - 23
+      4: 3.8.10
+      5: 0.12.21
+      8:
+      - 5
+cfg/Data/data_dir:
+  desc: null
+  value: Camelyon16/pt_files/
+cfg/Data/data_shuffle:
+  desc: null
+  value: false
+cfg/Data/dataset_name:
+  desc: null
+  value: camel_data
+cfg/Data/fold:
+  desc: null
+  value: 0
+cfg/Data/label_dir:
+  desc: null
+  value: dataset_csv/camelyon16/
+cfg/Data/nfold:
+  desc: null
+  value: 4
+cfg/Data/test_dataloader/batch_size:
+  desc: null
+  value: 1
+cfg/Data/test_dataloader/num_workers:
+  desc: null
+  value: 8
+cfg/Data/train_dataloader/batch_size:
+  desc: null
+  value: 1
+cfg/Data/train_dataloader/num_workers:
+  desc: null
+  value: 8
+cfg/General/amp_level:
+  desc: null
+  value: O2
+cfg/General/comment:
+  desc: null
+  value: None
+cfg/General/epochs:
+  desc: null
+  value: 200
+cfg/General/fp16:
+  desc: null
+  value: true
+cfg/General/frozen_bn:
+  desc: null
+  value: false
+cfg/General/gpus:
+  desc: null
+  value:
+  - 2
+cfg/General/grad_acc:
+  desc: null
+  value: 2
+cfg/General/log_path:
+  desc: null
+  value: logs/
+cfg/General/multi_gpu_mode:
+  desc: null
+  value: dp
+cfg/General/patience:
+  desc: null
+  value: 10
+cfg/General/precision:
+  desc: null
+  value: 16
+cfg/General/seed:
+  desc: null
+  value: 2021
+cfg/General/server:
+  desc: null
+  value: test
+cfg/Loss/base_loss:
+  desc: null
+  value: CrossEntropyLoss
+cfg/Model/n_classes:
+  desc: null
+  value: 2
+cfg/Model/name:
+  desc: null
+  value: TransMIL
+cfg/Optimizer/lr:
+  desc: null
+  value: 0.0002
+cfg/Optimizer/momentum:
+  desc: null
+  value: None
+cfg/Optimizer/opt:
+  desc: null
+  value: lookahead_radam
+cfg/Optimizer/opt_betas:
+  desc: null
+  value: None
+cfg/Optimizer/opt_eps:
+  desc: null
+  value: None
+cfg/Optimizer/weight_decay:
+  desc: null
+  value: 1.0e-05
+cfg/config:
+  desc: null
+  value: /mnt/largedrive0/katariap/feature_extraction/data/Code/multi_instance_learning/src/config/TransMIL.yaml
+data/data_dir:
+  desc: null
+  value: Camelyon16/pt_files/
+data/data_shuffle:
+  desc: null
+  value: false
+data/dataset_name:
+  desc: null
+  value: camel_data
+data/fold:
+  desc: null
+  value: 0
+data/label_dir:
+  desc: null
+  value: dataset_csv/camelyon16/
+data/nfold:
+  desc: null
+  value: 4
+data/test_dataloader/batch_size:
+  desc: null
+  value: 1
+data/test_dataloader/num_workers:
+  desc: null
+  value: 8
+data/train_dataloader/batch_size:
+  desc: null
+  value: 1
+data/train_dataloader/num_workers:
+  desc: null
+  value: 8
+loss/base_loss:
+  desc: null
+  value: CrossEntropyLoss
+model/n_classes:
+  desc: null
+  value: 2
+model/name:
+  desc: null
+  value: TransMIL
+optimizer/lr:
+  desc: null
+  value: 0.0002
+optimizer/momentum:
+  desc: null
+  value: None
+optimizer/opt:
+  desc: null
+  value: lookahead_radam
+optimizer/opt_betas:
+  desc: null
+  value: None
+optimizer/opt_eps:
+  desc: null
+  value: None
+optimizer/weight_decay:
+  desc: null
+  value: 1.0e-05

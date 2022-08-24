@@ -1,0 +1,1 @@
+{"val_loss": 1.9375, "auc": 0.4791666269302368, "val_Accuracy": 0.5, "val_CohenKappa": 0.07407402992248535, "val_F1Score": 0.49494948983192444, "val_Recall": 0.5416666865348816, "val_Precision": 0.5476190447807312, "epoch": 9, "trainer/global_step": 1799, "_timestamp": 1660746592, "_runtime": 1704, "_step": 4, "_wandb": {"runtime": 1704}}
