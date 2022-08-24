@@ -87,3 +87,6 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+/src/models/Multi_Instance_Learning/
+/src/models/wandb/
