@@ -12,7 +12,6 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning import loggers as pl_loggers
 
-
 # ----> load Callback
 
 from pytorch_lightning.callbacks import ModelCheckpoint
@@ -95,12 +94,12 @@ def main(cfg):
         for file in files:
             slide_list.append(file.path)
         
-    print(len(slide_list))
+   
     dataset = FeatureJson(slide_list,labels_dict)
     # dataset = Features(slide_data_500,labels_dict)
     dataset_size = len(dataset)
 
-    print(slide_list[183])
+   
     indices = list(range(dataset_size))
     split = int(np.floor(validation_split * dataset_size))
     if shuffle_dataset:
