@@ -90,7 +90,7 @@ class  ModelInterface(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         #---->inference
     
-        data, label= batch
+        data, label,_= batch
         results_dict = self.model(data=data, label=label)
         logits = results_dict['logits']
         Y_prob = results_dict['Y_prob']
@@ -122,7 +122,7 @@ class  ModelInterface(pl.LightningModule):
         self.data_train= [{"count": 0, "correct": 0} for i in range(self.n_classes)]
 
     def validation_step(self, batch, batch_idx):
-        data, label = batch
+        data, label,_= batch
         results_dict = self.model(data=data, label=label)
         logits = results_dict['logits']
         Y_prob = results_dict['Y_prob']
@@ -173,7 +173,7 @@ class  ModelInterface(pl.LightningModule):
         return [optimizer]
 
     def test_step(self, batch, batch_idx):
-        data, label = batch
+        data, label,file_name = batch
         results_dict = self.model(data=data, label=label)
         logits = results_dict['logits']
         Y_prob = results_dict['Y_prob']
@@ -182,13 +182,8 @@ class  ModelInterface(pl.LightningModule):
         attentions_2 = results_dict['attentions_2']
         add_length = results_dict['add_length']
 
-        file_name = '632'
-        file_name = str(add_length) + 'kimianet500'+ '.npy'
-        # print(file_name)
-        # print(type(file_name[0]))
-
-        # np.save(file_name, attentions_1.cpu().detach().numpy())
-        # np.save('data.npy',attentions_2)
+        file_name = file_name
+        file_name = str(add_length) + 'attention_weights'+ '.npy'
         np.save(file_name,attentions_2.cpu().detach().numpy())
         #---->acc log
         Y = int(label)
@@ -197,40 +192,37 @@ class  ModelInterface(pl.LightningModule):
 
         return {'logits' : logits, 'Y_prob' : Y_prob, 'Y_hat' : Y_hat, 'label' : label}
 
-    # def test_epoch_end(self, output_results):
-    #     probs = torch.cat([x['Y_prob'] for x in output_results], dim = 0)
-    #     max_probs = torch.stack([x['Y_hat'] for x in output_results])
-    #     target = torch.stack([x['label'] for x in output_results], dim = 0)
+    def test_epoch_end(self, output_results):
+        probs = torch.cat([x['Y_prob'] for x in output_results], dim = 0)
+        max_probs = torch.stack([x['Y_hat'] for x in output_results])
+        target = torch.stack([x['label'] for x in output_results], dim = 0)
         
-    #     #---->
-    #     auc = self.AUROC(probs, target.squeeze())
-    #     metrics = self.test_metrics(max_probs.squeeze() , target.squeeze())
-    #     metrics['auc'] = auc
-    #     for keys, values in metrics.items():
-    #         print(f'{keys} = {values}')
-    #         metrics[keys] = values.cpu().numpy()
-    #     print()
-    #     #---->acc log
-    #     for c in range(self.n_classes):
-    #         count = self.data_test[c]["count"]
-    #         correct = self.data_test[c]["correct"]
-    #         if count == 0: 
-    #             acc = None
-    #         else:
-    #             acc = float(correct) / count
-    #         print('class {}: acc {}, correct {}/{}'.format(c, acc, correct, count))
-    #     self.data_test = [{"count": 0, "correct": 0} for i in range(self.n_classes)]
-    #     #---->
-    #     result = pd.DataFrame([metrics])
-    #     result.to_csv('result.csv')
+        #---->
+        auc = self.AUROC(probs, target.squeeze())
+        metrics = self.test_metrics(max_probs.squeeze() , target.squeeze())
+        metrics['auc'] = auc
+        for keys, values in metrics.items():
+            print(f'{keys} = {values}')
+            metrics[keys] = values.cpu().numpy()
+        print()
+        #---->acc log
+        for c in range(self.n_classes):
+            count = self.data_test[c]["count"]
+            correct = self.data_test[c]["correct"]
+            if count == 0: 
+                acc = None
+            else:
+                acc = float(correct) / count
+            print('class {}: acc {}, correct {}/{}'.format(c, acc, correct, count))
+        self.data_test = [{"count": 0, "correct": 0} for i in range(self.n_classes)]
+        #---->
+        result = pd.DataFrame([metrics])
+        result.to_csv('result.csv')
 
 
     def load_model(self):
         name = self.hparams.model.name
-        # Change the `trans_unet.py` file name to `TransUnet` class name.
-        # Please always name your model file name as `trans_unet.py` and
-        # class name or funciton name corresponding `TransUnet`.
-        # print(name)
+    
         if '_' in name:
             camel_name = ''.join([i.capitalize() for i in name.split('_')])
         else:
