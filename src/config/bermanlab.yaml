@@ -1,0 +1,61 @@
+General:
+    seed: 2021
+    fp16: True
+    amp_level: O2
+    precision: 16 
+    weights_file_path: /mnt/largedrive0/katariap/feature_extraction/data/Code/multi_instance_learning/models/epoch=01-val_loss=0.6265.ckpt
+    gpus: [0]
+    epochs: &epoch 20
+    grad_acc: 1
+    frozen_bn: False
+    patience: 10
+    mode: train #train #test
+    log_path: logs/
+    project_name: Multi_Instance_Learning
+    run_name: testing_final_Structure
+    
+
+Data:
+    data_type: single_file
+    dataset_name: berman_lab_cohort
+    data_shuffle: True
+    data_folder: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/DenseNet_Features/
+    selected_patches_json: /mnt/largedrive0/katariap/feature_extraction/data/Code/kimianet_feature_extractor/src/data/selected_tiles/selected_clustering_500_final.json
+    data_file: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/kimianet_features/KimiaNet_Features_Final.pickle
+    custom_test_data_file:
+    label_dir: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/Data.csv
+    fold: 0
+    nfold: 4
+    split_type: balanced #random
+    split_test: True # Test split required or not
+    train_split: 0.8 #Dataset Split
+    validation_split: 0.1 
+    test_split: 0.1
+
+    train_dataloader:
+        batch_size: 1 
+        num_workers: 8
+
+    val_dataloader:
+        batch_size: 1
+        num_workers: 8
+
+    test_dataloader:
+        batch_size: 1
+        num_workers: 8
+
+Model:
+    name: TransMIL
+    n_classes: 2
+
+
+Optimizer:
+    opt: lookahead_radam
+    lr: 0.0002
+    opt_eps: null 
+    opt_betas: null
+    momentum: null 
+    weight_decay: 0.00001
+
+Loss:
+    base_loss: CrossEntropyLoss
