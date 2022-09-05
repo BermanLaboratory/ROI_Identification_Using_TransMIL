@@ -1,4 +1,3 @@
-from tkinter import E
 import pytorch_lightning as pl
 from data.features import FeatureJson, Features
 import torch
@@ -41,14 +40,13 @@ class FeaturesInterface(pl.LightningDataModule):
                 labels_list = labels_list + [self.labels_dict[int(((slide.split('/')[-1]).split(' ')[1]).split('.')[0])]]
 
 
-        self.sampler = data_sampler_dict(list(range(len(self.dataset))),self.cfg.General.seed,len(self.dataset),labels_list,self.cfg.Data.train_split,self.cfg.Data.validation_split,self.cfg.Data.test_split,self.cfg.Data.data_shuffle)
+        self.sampler = data_sampler_dict(self.cfg.Data.split_type,list(range(len(self.dataset))),self.cfg.General.seed,len(self.dataset),labels_list,self.cfg.Data.train_split,self.cfg.Data.validation_split,self.cfg.Data.test_split,self.cfg.Data.data_shuffle)
     
         if self.cfg.Data.split_test == False :
             slide_data_test = per_slide_features(self.cfg.Data.custom_test_data_file)
             self.dataset_test = Features(slide_data_test,self.labels_dict)
             test_sampler = SubsetRandomSampler(list(range(len(self.dataset_test))))
-
-        self.sampler['test'] = test_sampler
+            self.sampler['test'] = test_sampler
 
 
     def train_dataloader(self):

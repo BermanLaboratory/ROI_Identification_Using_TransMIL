@@ -60,8 +60,8 @@ class FeatureJson(Dataset):
     
         features = torch.tensor(list(feature_dictionary.values()))
         label = torch.tensor(self.labels_dict[int(((file_path.split('/')[-1]).split(' ')[1]).split('.')[0])])
-
-        return features,label
+        file_name = ((file_path.split('/')[-1]).split(' ')[1]).split('.')[0]
+        return features,label,file_name
 
 
 

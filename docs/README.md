@@ -1,19 +1,13 @@
 ROI Identification From Whole Slide Images Using Correlated Multi Instance Learning
 ==============================
 
-Mutli Instance Learning is a type of machine learning technique in which the model receives a set of instances as a single bag and each bag has an label associated with it.
+Multi Instance Learning is a type of machine learning technique in which the model receives a set of instances as a single bag and each bag has an label associated with it.
+Multi Instance Learning helps is solving the weakly supervised classification problems.
 
+[TransMIL](https://arxiv.org/abs/2106.00908) has been used in this project. TransMIL takes into account the correlation between various instances of the whole slide image. 
 
 ## Running the model:
-All the file paths and setting for the model can be modified through the [configuration file](). 
-The mode to train and test can be changed throught the file.
-
-Parameters required for training:
-
-If the number of patches selected for each image are of different number, only batch size of one works.
-The Batch size can be increased in case the number  of patches for each image are same.
-
-Parameters required for testing:
+All the file paths and settings for the model can be modified through the [configuration file](src/config/bermanlab.yaml). 
 
 To Run Training or Testing of the model:
 
@@ -24,9 +18,12 @@ python main.py PATH_TO_CONFIG_FILE
 ## Creating Heatmaps:
 
 ### 1. Extract Attention Weights of a specific image from the trained model
-Use [this]() to extract the attention weights of a specific whole slide image using sample ids.
+Use [this file](src/models/extract_attentions.py) to extract the attention weights of a specific whole slide image using sample ids.
 
 The Script will generate .npy file that contains the attention matrix.
+The attention matrix extracted contains weights for correlation of each patch with other.
+For our use case only self attention weights are required.
+Those are the diagonal values. This extraction is done while running the code for Generating Heatmaps.
 
 Sample Shell Command:
 ```shell
@@ -66,41 +63,40 @@ Project Organization
 
     ├── docs
     |     └── Readme.md     
+    ├── models   <- Stores the Checkpoints(weights) for the trained models      
     │
-    ├── models           
-    │
-    ├── requirements.txt   
+    ├── requirements.txt   <- contains the library requirements for the project
     │                  
     └── src                <- Source code for use in this project.
         ├── __init__.py    
         │
         ├── config
-        |      └── bermanlab.yaml
+        |      └── bermanlab.yaml  <- Contains all the modifiable configuration options
         |
         ├── data
         |   ├── __init__.py
-        |   ├── features_interface.py           
-        │   └── features.py
+        |   ├── features_interface.py     <-  Interface to the dataset      
+        │   └── features.py               <-  contains the code to the dataset Class
         │
         ├── models          
         │   │ 
         |   ├── __init__.py
         |   |                
         │   ├── architechture
-        |   |       ├── MyLoss
-        |   |       ├── MyOptimizer
-        |   |       ├── TransMIL_interface.py
-        |   |       └── TransMIL.py
+        |   |       ├── MyLoss           <-  Contains all the available Loss Functions
+        |   |       ├── MyOptimizer       <-  Contains All available Optimizers
+        |   |       ├── TransMIL_interface.py <-  Interface to the main model
+        |   |       └── TransMIL.py          <-  Architechture of the model
         |   |
-        |   ├── extract_attentions.py
-        |   └── main.py
+        |   ├── extract_attentions.py  <- Code to Extract the Attentions weights for a wsi using trained model
+        |   └── main.py    <- Code to Run Training And Testing On the Datasets.
         │
         ├── utils
         |     ├── __init__.py
-        |     └──  utils.py
+        |     └──  utils.py  <-  All the helper functions used through the project are availble in this file
         |
         └── visualization  
-                └── heatmaps_visualization.ipynb
+                └── heatmaps_visualization.ipynb  <- Code for Generation of Heatmaps (Jupyter Notebook)
     
 
 ### References:

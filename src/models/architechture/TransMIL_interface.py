@@ -182,9 +182,9 @@ class  ModelInterface(pl.LightningModule):
         attentions_2 = results_dict['attentions_2']
         add_length = results_dict['add_length']
 
-        file_name = file_name
-        file_name = str(add_length) + 'attention_weights'+ '.npy'
-        np.save(file_name,attentions_2.cpu().detach().numpy())
+        # file_name = file_name
+        # file_name = str(add_length) + 'attention_weights'+ '.npy'
+        # np.save(file_name,attentions_2.cpu().detach().numpy())
         #---->acc log
         Y = int(label)
         self.data_test[Y]["count"] += 1
