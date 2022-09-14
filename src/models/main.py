@@ -71,7 +71,7 @@ def main(cfg):
 
     #---->train or test
     if cfg.General.mode == 'train':
-        # print('Starting Training')
+        
         trainer.fit(model = model, datamodule = dm)
     else:
     
@@ -81,7 +81,7 @@ def main(cfg):
 if __name__ == '__main__':
 
     args = make_parse()
-    # cfg = read_yaml('/mnt/largedrive0/katariap/feature_extraction/data/Code/multi_instance_learning/src/config/bermanlab.yaml')
+
     cfg = read_yaml(args['config'])
 
     #---->update

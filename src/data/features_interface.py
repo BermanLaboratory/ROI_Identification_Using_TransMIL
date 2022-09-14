@@ -9,13 +9,14 @@ class FeaturesInterface(pl.LightningDataModule):
     def __init__(self,cfg):
 
         super().__init__()
-
         self.cfg = cfg
 
 
     def setup(self,stage = None):
 
         self.labels_dict = dataset_labels(self.cfg.Data.label_dir)
+
+        #Dataset Initialization on the basis of data_type
 
         if (self.cfg.Data.data_type == 'single_file') :
 
@@ -42,7 +43,7 @@ class FeaturesInterface(pl.LightningDataModule):
 
         self.sampler = data_sampler_dict(self.cfg.Data.split_type,list(range(len(self.dataset))),self.cfg.General.seed,len(self.dataset),labels_list,self.cfg.Data.train_split,self.cfg.Data.validation_split,self.cfg.Data.test_split,self.cfg.Data.data_shuffle)
     
-        if self.cfg.Data.split_test == False :
+        if self.cfg.Data.split_test == False : #if false initialize the new test dataset.
             slide_data_test = per_slide_features(self.cfg.Data.custom_test_data_file)
             self.dataset_test = Features(slide_data_test,self.labels_dict)
             test_sampler = SubsetRandomSampler(list(range(len(self.dataset_test))))
