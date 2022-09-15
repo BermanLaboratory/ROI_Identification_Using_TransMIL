@@ -105,9 +105,9 @@ Arguments:
 The Code For Generating heatmaps is in the form of a jupyter notebook so that the heatmaps can be visualized in the notebook itself and once after tuning the parameters final heatmaps can be saved to the required destination.
 
 Files Required:
-1. Extracted Features Pickle File
+1. Extracted Features Pickle File/ Feature Vector file corresponding to the whole slide to be analysed.
 2. Attention Weights file for the Slide whose heatmap is required.
-3. The Whole Slide Image File (Downscaled by 10X):
+3. The Whole Slide Image File (Downscaled by 10X or Custom Downscale):
 
 Steps to Downscale .vsi Image Using Qupath:
 1. File -> Export Images -> Original Pixels -> .tiff Format -> Downscale Factor = 10.
