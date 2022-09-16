@@ -1,18 +1,18 @@
 General:
-    seed: 2021
+    seed: 1984
     fp16: True
     amp_level: O2
     precision: 16 
     weights_file_path: /mnt/largedrive0/katariap/feature_extraction/data/Code/multi_instance_learning/models/epoch=01-val_loss=0.6265.ckpt
     gpus: [0]
-    epochs: &epoch 20
+    epochs: &epoch 5
     grad_acc: 1
     frozen_bn: False
     patience: 10
     mode: train #train #test
     log_path: logs/
     project_name: Multi_Instance_Learning
-    run_name: testing_final_Structure
+    run_name: 1_Fine_Tuned_features_5
     
 
 Data:
@@ -21,7 +21,7 @@ Data:
     data_shuffle: True
     data_folder: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/DenseNet_Features/
     selected_patches_json: /mnt/largedrive0/katariap/feature_extraction/data/Code/kimianet_feature_extractor/src/data/selected_tiles/selected_clustering_500_final.json
-    data_file: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/kimianet_features/KimiaNet_Features_Final.pickle
+    data_file: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/FineTuned_Model_Features_dict.pickle
     custom_test_data_file:
     label_dir: /mnt/largedrive0/katariap/feature_extraction/data/Dataset/Data.csv
     fold: 0

@@ -63,7 +63,7 @@ def main(cfg):
         num_sanity_val_steps=0, 
         logger=wandb_logger,
         callbacks=callbacks,
-        max_epochs= 10,
+        max_epochs= cfg.General.epochs,
         gpus=cfg.General.gpus,  
         precision=cfg.General.precision,  
         check_val_every_n_epoch=2,
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
     args = make_parse()
 
-    cfg = read_yaml(args['config'])
+    cfg = read_yaml(args.config)
 
     #---->update
     cfg.config = args.config
